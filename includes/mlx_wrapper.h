@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>                └─┘ ┴  ┴ └─┘        */
 /*                                                        ┌┬┐┌─┐┌┬┐┌─┐        */
 /*   Created: 2025/04/06 15:40:14 by tblochet             │││├─┤ │ ├─┤        */
-/*   Updated: 2025/04/06 17:00:06 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
+/*   Updated: 2025/04/08 13:48:17 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define MAX_EVENT 36
 # define WIN_TITLE "Cub3D"
 # include "mlx.h"
+# include <stdio.h>
+# include <stdlib.h>
 
 typedef struct s_image			t_image;
 typedef struct s_mlx_event_list	t_mlx_event_list;
@@ -98,6 +100,6 @@ struct							s_mlx_wrapper
 
 t_mlx_wrapper					*get_mlx_wrapper(void);
 t_mlx_win_list					*new_window(int width, int height);
-XImage							*new_image(int width, int height);
-
+t_image							*setup_image(int width, int height);
+int								display(void);
 #endif

@@ -6,19 +6,37 @@
 /*   By: tblochet <tblochet@student.42.fr>                └─┘ ┴  ┴ └─┘        */
 /*                                                        ┌┬┐┌─┐┌┬┐┌─┐        */
 /*   Created: 2025/04/06 15:43:25 by tblochet             │││├─┤ │ ├─┤        */
-/*   Updated: 2025/04/06 16:20:09 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
+/*   Updated: 2025/04/08 15:11:44 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <engine.h>
 
-
 static int	initialize_graphics_engine(t_engine *engine)
 {
-	engine->graphics = mlx_init();
-	if (!engine->graphics)
+	t_mlx_wrapper	*wrapper;
+
+	wrapper = get_mlx_wrapper();
+	if (!wrapper || !wrapper->mlx)
 		return (0);
+	engine->graphics = wrapper->mlx;
 	return (1);
+}
+
+static void	teardown(void)
+{
+	t_engine		*engine;
+	t_mlx_wrapper	*wrapper;
+
+	engine = get_engine();
+	wrapper = get_mlx_wrapper();
+	mlx_loop_end(wrapper->mlx);
+	mlx_destroy_image(wrapper->mlx, engine->screen.image->image);
+	free(engine->screen.image);
+	mlx_destroy_window(wrapper->mlx, engine->screen.window);
+	mlx_destroy_display(wrapper->mlx);
+	free(wrapper->mlx);
+	exit(0);
 }
 
 t_engine	*get_engine(void)
@@ -47,33 +65,6 @@ t_engine	*get_engine(void)
 	return (&engine);
 }
 
-static t_image	*setup_image(t_engine *engine)
-{
-	t_image	*img;
-	t_mlx_wrapper	*wrapper;
-
-	wrapper = get_mlx_wrapper();
-	img = malloc(sizeof(t_image));
-	if (!img)
-		return (0);
-	img->image = new_image(engine->screen.width, engine->screen.height);
-	if (wrapper->error.code)
-	{
-		printf("Error: %s\n", wrapper->error.info);
-		free(img);
-		return (0);
-	}	
-	img->data = mlx_get_data_addr(img->image, &img->bpp, &img->line_length,
-			&img->image->byte_order);
-	if (!img->data)
-	{
-		printf("Error: Failed to set data pointer in image structure.");
-		free(img);
-		return (0);
-	}
-	return (img);
-}
-
 int	setup_engine_screen(void)
 {
 	t_engine		*engine;
@@ -83,13 +74,16 @@ int	setup_engine_screen(void)
 	wrapper = get_mlx_wrapper();
 	engine->screen.window = new_window(engine->screen.width,
 			engine->screen.height);
-	if (wrapper->error.code){
+	if (wrapper->error.code)
+	{
 		printf("Error: %s\n", wrapper->error.info);
-		return (1);	
+		return (1);
 	}
-	engine->screen.image = setup_image(engine);
+	engine->screen.image = setup_image(engine->screen.width,
+			engine->screen.height);
 	if (!engine->screen.image)
 		return (1);
+	mlx_hook(engine->screen.window, DestroyNotify, ButtonPressMask,
+		(int (*)()) & teardown, wrapper->mlx);
 	return (0);
 }
-
