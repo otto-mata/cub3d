@@ -6,7 +6,7 @@
 /*   By: ottomata <ottomata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 04:32:01 by ottomata          #+#    #+#             */
-/*   Updated: 2025/04/30 05:30:11 by ottomata         ###   ########.fr       */
+/*   Updated: 2025/04/30 05:42:47 by ottomata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,5 @@ int								emptyline(char *l);
 char							*gnl(int fd);
 t_cubcfg						*newcfg(void);
 int								parsefile(int fd, t_cubcfg *dest);
-int								texvalidate(t_cubcfg *cfg);
+int								parampresence(t_cubcfg *cfg);
 #endif

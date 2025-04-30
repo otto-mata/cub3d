@@ -6,7 +6,7 @@
 /*   By: ottomata <ottomata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 04:58:07 by ottomata          #+#    #+#             */
-/*   Updated: 2025/04/30 05:20:16 by ottomata         ###   ########.fr       */
+/*   Updated: 2025/04/30 05:42:47 by ottomata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ int	main(void)
 	cfg = newcfg();
 	printf("?: %d\n", parsefile(cubfd, cfg));
 	close(cubfd);
-	printf("?: %d\n", texvalidate(cfg));
+	printf("?: %d\n", parampresence(cfg));
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texvalidate.c                                      :+:      :+:    :+:   */
+/*   parampresence.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ottomata <ottomata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 05:16:51 by ottomata          #+#    #+#             */
-/*   Updated: 2025/04/30 05:40:30 by ottomata         ###   ########.fr       */
+/*   Updated: 2025/04/30 05:43:54 by ottomata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	param2flag(char *l)
 }
 
 /**
- * @brief Validates a configuration for a CUB file
+ * @brief Checks for the presence of all params in a CUB file
  * @param cfg config struct
  * @return 1 if OK, 0 if KO
  *
@@ -54,7 +54,7 @@ static int	param2flag(char *l)
  * 	=> flag |= lf
  * 		This sets the bit corresponding to the param to 1.
  */
-int	texvalidate(t_cubcfg *cfg)
+int	parampresence(t_cubcfg *cfg)
 {
 	int	i;
 	int	fn;
@@ -70,7 +70,7 @@ int	texvalidate(t_cubcfg *cfg)
 	{
 		lf = param2flag(cfg->lines[i++]);
 		if (lf == (1 << 20))
-			return (1);
+			return (flag == OK);
 		if (lf && lf != (1 << fn))
 			return (0);
 		if (lf)
