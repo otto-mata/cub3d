@@ -6,7 +6,7 @@
 /*   By: ottomata <ottomata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 05:46:00 by ottomata          #+#    #+#             */
-/*   Updated: 2025/04/30 05:58:04 by ottomata         ###   ########.fr       */
+/*   Updated: 2025/04/30 06:03:46 by ottomata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ static t_rgb	a2rgb(char *s)
 {
 	t_rgb	rgb;
 
+	// TODO: Changeme: atoi to a specific atoi that returns -1 on parse error;
 	rgb.r = atoi(s);
-	s += strcspn(s, ",");
+	s += strcspn(s, ",") + 1;
 	rgb.g = atoi(s);
-	s += strcspn(s, ",");
+	s += strcspn(s, ",") + 1;
 	rgb.b = atoi(s);
 	return (rgb);
 }
@@ -44,9 +45,9 @@ int	paramvalues(t_cubcfg *cfg)
 		else if (lf == EA)
 			strcpy(cfg->texpath.ea, cfg->lines[i] + 3);
 		else if (lf == F)
-			cfg->clr.f = a2rgb(cfg->lines[i]);
+			cfg->clr.f = a2rgb(cfg->lines[i] + 2);
 		else if (lf == C)
-			cfg->clr.c = a2rgb(cfg->lines[i]);
+			cfg->clr.c = a2rgb(cfg->lines[i] + 2);
 		i++;
 	}
 	return (1);
