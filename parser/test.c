@@ -6,7 +6,7 @@
 /*   By: ottomata <ottomata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 04:58:07 by ottomata          #+#    #+#             */
-/*   Updated: 2025/04/30 05:42:47 by ottomata         ###   ########.fr       */
+/*   Updated: 2025/04/30 06:00:06 by ottomata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ int	main(void)
 
 	cubfd = open("./sample.cub", O_RDONLY);
 	cfg = newcfg();
-	printf("?: %d\n", parsefile(cubfd, cfg));
+	printf("?parsefile: %d\n", parsefile(cubfd, cfg));
 	close(cubfd);
-	printf("?: %d\n", parampresence(cfg));
+	printf("?parampresence: %d\n", parampresence(cfg));
+	printf("?paramvalues: %d\n", paramvalues(cfg));
+	printf("NO>%s\nSO>%s\nWE>%s\nEA>%s\n", cfg->texpath.no, cfg->texpath.so,
+		cfg->texpath.we, cfg->texpath.ea);
+	free(cfg);
 }

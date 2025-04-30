@@ -6,7 +6,7 @@
 /*   By: ottomata <ottomata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 04:32:01 by ottomata          #+#    #+#             */
-/*   Updated: 2025/04/30 05:42:47 by ottomata         ###   ########.fr       */
+/*   Updated: 2025/04/30 05:56:05 by ottomata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,21 @@ struct							s_color_rgb
 
 struct							s_cub_file_cfg
 {
-	struct						s_textures
+	struct						s_textures_paths
 	{
 		char					no[PATH_MAX];
 		char					so[PATH_MAX];
 		char					we[PATH_MAX];
 		char					ea[PATH_MAX];
+	} texpath;
+	struct						s_textures
+	{
+		void					*no;
+		void					*so;
+		void					*we;
+		void					*ea;
 	} tex;
+
 	struct						s_colors
 	{
 		t_rgb					f;
@@ -63,8 +71,10 @@ struct							s_cub_file_cfg
 };
 
 int								emptyline(char *l);
+int								param2flag(char *l);
 char							*gnl(int fd);
 t_cubcfg						*newcfg(void);
 int								parsefile(int fd, t_cubcfg *dest);
 int								parampresence(t_cubcfg *cfg);
+int								paramvalues(t_cubcfg *cfg);
 #endif
