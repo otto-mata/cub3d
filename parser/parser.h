@@ -6,7 +6,7 @@
 /*   By: ottomata <ottomata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 04:32:01 by ottomata          #+#    #+#             */
-/*   Updated: 2025/04/30 05:12:34 by ottomata         ###   ########.fr       */
+/*   Updated: 2025/04/30 05:30:11 by ottomata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ struct							s_cub_file_cfg
 	int							ln;
 };
 
+int								emptyline(char *l);
 char							*gnl(int fd);
 t_cubcfg						*newcfg(void);
 int								parsefile(int fd, t_cubcfg *dest);
+int								texvalidate(t_cubcfg *cfg);
 #endif

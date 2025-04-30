@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   emptyline.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ottomata <ottomata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 04:58:07 by ottomata          #+#    #+#             */
-/*   Updated: 2025/04/30 05:20:16 by ottomata         ###   ########.fr       */
+/*   Created: 2025/04/30 05:29:11 by ottomata          #+#    #+#             */
+/*   Updated: 2025/04/30 05:30:05 by ottomata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int	main(void)
+int	emptyline(char *l)
 {
-	int			cubfd;
-	t_cubcfg	*cfg;
+	size_t	i;
 
-	cubfd = open("./sample.cub", O_RDONLY);
-	cfg = newcfg();
-	printf("?: %d\n", parsefile(cubfd, cfg));
-	close(cubfd);
-	printf("?: %d\n", texvalidate(cfg));
+	i = 0;
+	while (l[i])
+	{
+		if (!isspace(l[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
