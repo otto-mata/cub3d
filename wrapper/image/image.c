@@ -26,7 +26,7 @@ static XImage *new_image(int width, int height)
 		wrp->error.code = 2;
 		wrp->error.info = "Failed to create a new image.";
 	}
-	
+
 	return (image);
 }
 
@@ -45,7 +45,7 @@ t_image	*setup_image(int width, int height)
 		printf("Error: %s\n", wrapper->error.info);
 		free(img);
 		return (0);
-	}	
+	}
 	img->data = mlx_get_data_addr(img->image, &img->bpp, &img->line_length,
 			&img->image->byte_order);
 	if (!img->data)

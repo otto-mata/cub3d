@@ -1,0 +1,15 @@
+Textures
+	NO	PATH
+	SO	PATH
+	WE	PATH
+	EA	PATH
+Colors
+	F	R,G,B
+	C	R,G,B
+Map
+	1:		Wall
+	0:		Empty
+	{N, S, W, E}:	Player spawn & orientation
+
+
+

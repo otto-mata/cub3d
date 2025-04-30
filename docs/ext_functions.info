@@ -1,0 +1,17 @@
+AUTHORIZED:
+	open		=> Map files
+	close		=> Map files
+	read		=> Map files
+	write		=> ???
+	printf		=> Logging
+	malloc		=> Gen.
+	free		=> Gen.
+	perror		=> Logging
+	strerror	=> Logging
+	exit		=> Gen.
+	gettimeofday	=> Frame rate control
+
+	math.h/*	=> View + movement
+	mlx.h/*		=> Rendering
+
+libft IS authorized too.
