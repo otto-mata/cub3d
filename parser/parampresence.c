@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parampresence.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ottomata <ottomata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 05:16:51 by ottomata          #+#    #+#             */
-/*   Updated: 2025/04/30 05:47:48 by ottomata         ###   ########.fr       */
+/*   Updated: 2025/05/02 14:13:58 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,17 @@
  */
 int	parampresence(t_cubcfg *cfg)
 {
-	int	i;
 	int	fn;
 	int	flag;
 	int	lf;
 
 	if (!cfg)
 		return (1);
-	i = 0;
 	flag = 0;
 	fn = 0;
-	while (i < cfg->ln)
+	while (cfg->hend < cfg->ln)
 	{
-		lf = param2flag(cfg->lines[i++]);
+		lf = param2flag(cfg->lines[cfg->hend++]);
 		if (lf == (1 << 20))
 			return (flag == OK);
 		if (lf && lf != (1 << fn))

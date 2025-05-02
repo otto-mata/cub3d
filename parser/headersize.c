@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsefile.c                                        :+:      :+:    :+:   */
+/*   headersize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 04:38:48 by ottomata          #+#    #+#             */
-/*   Updated: 2025/05/02 15:14:10 by tblochet         ###   ########.fr       */
+/*   Created: 2025/05/02 14:08:02 by tblochet          #+#    #+#             */
+/*   Updated: 2025/05/02 15:07:27 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int	parsefile(int fd, t_cubcfg *cfg)
+size_t	headersize(t_cubcfg *cfg)
 {
-	char	*l;
-	int		ln;
-	size_t	llen;
+	size_t sz;
+	int i;
 
-	if (!cfg || fd < 0)
-		return (0);
-	ln = 0;
-	while (1)
-	{
-		l = gnl(fd);
-		if (!l)
-			break ;
-		strcat(cfg->map, l);
-		cfg->lines[ln++] = l;
-		llen = strlen(l);
-		if (llen > cfg->maxlen)
-			cfg->maxlen = llen;
-	}
-	cfg->ln = ln;
-	return (1);
+	i = 0;
+	sz = 0;
+	while (i < cfg->hend - 1)
+		sz += strlen(cfg->lines[i++]);
+	return (sz);
 }

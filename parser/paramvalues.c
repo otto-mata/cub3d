@@ -3,25 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   paramvalues.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ottomata <ottomata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 05:46:00 by ottomata          #+#    #+#             */
-/*   Updated: 2025/04/30 06:03:46 by ottomata         ###   ########.fr       */
+/*   Updated: 2025/05/02 15:07:14 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+#include "../includes/types.h"
+
+static t_u8 a2clr(char *s, char **err)
+{
+	t_u32	res;
+	t_i8	g;
+	
+	g = 0;
+	res = 0;
+	while(isspace(*s))
+		s++;
+	if (!isdigit(*s))
+		return (*err = "invalid value, only spaces and digits allowed.", 0);
+	while(*s && isdigit(*s) && !g)
+	{
+		res *= 10;
+		g = __builtin_add_overflow(res, *s - '0', &res);
+		s++;
+	}
+	if (g || res > 255)
+		return (*err = "color must be in range [0, 255]", 0);
+	*err = 0;
+	return ((t_u8)res);
+	
+}
 
 static t_rgb	a2rgb(char *s)
 {
 	t_rgb	rgb;
+	t_u8	c;
+	char 	*es;
 
-	// TODO: Changeme: atoi to a specific atoi that returns -1 on parse error;
-	rgb.r = atoi(s);
+	es = 0;
+	c = a2clr(s, &es);
+	if (es)
+		printf("%s\n", es);
+	rgb.r = c;
 	s += strcspn(s, ",") + 1;
-	rgb.g = atoi(s);
+	c = a2clr(s, &es);
+	if (es)
+		printf("%s\n", es);
+	rgb.g = c;
 	s += strcspn(s, ",") + 1;
-	rgb.b = atoi(s);
+	c = a2clr(s, &es);
+	if (es)
+		printf("%s\n", es);
+	rgb.b = c;
 	return (rgb);
 }
 

@@ -1,37 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsefile.c                                        :+:      :+:    :+:   */
+/*   validatemap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 04:38:48 by ottomata          #+#    #+#             */
-/*   Updated: 2025/05/02 15:14:10 by tblochet         ###   ########.fr       */
+/*   Created: 2025/05/02 14:38:07 by tblochet          #+#    #+#             */
+/*   Updated: 2025/05/02 15:05:15 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int	parsefile(int fd, t_cubcfg *cfg)
+static void	countchars(t_cubcfg *cfg)
 {
-	char	*l;
-	int		ln;
-	size_t	llen;
+	size_t	i;
 
-	if (!cfg || fd < 0)
-		return (0);
-	ln = 0;
-	while (1)
+	i = 0;
+	while (i < cfg->size)
 	{
-		l = gnl(fd);
-		if (!l)
-			break ;
-		strcat(cfg->map, l);
-		cfg->lines[ln++] = l;
-		llen = strlen(l);
-		if (llen > cfg->maxlen)
-			cfg->maxlen = llen;
+		cfg->chrn[cfg->map[i]]++;
+		i++;
 	}
-	cfg->ln = ln;
+}
+
+static int	validateplayer(t_cubcfg *cfg)
+{
+	return (cfg->chrn['N'] + cfg->chrn['S'] + cfg->chrn['E']
+		+ cfg->chrn['W'] == 1);
+}
+
+int	validatemap(t_cubcfg *cfg)
+{
+	int	i;
+
+	countchars(cfg);
+	if (!validateplayer(cfg))
+		return (0);
+	i = 33;
+	while (i < 128)
+	{
+		if (!strchr("10NSEW", i))
+			if (cfg->chrn[i])
+				return (0);
+		i++;
+	}
 	return (1);
 }

@@ -3,24 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ottomata <ottomata@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 04:32:01 by ottomata          #+#    #+#             */
-/*   Updated: 2025/04/30 05:56:05 by ottomata         ###   ########.fr       */
+/*   Updated: 2025/05/02 16:15:55 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
+# include "../includes/types.h"
 # include <ctype.h>
 # include <fcntl.h>
 # include <float.h>
 # include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
 # include <unistd.h>
+# include <string.h>
 # define MAP_MAX_SIZE 262144
+# ifndef PATH_MAX
+#  define PATH_MAX 4096
+# endif
 
 typedef struct s_cub_file_cfg	t_cubcfg;
 typedef struct s_color_rgb		t_rgb;
@@ -66,10 +70,19 @@ struct							s_cub_file_cfg
 		t_rgb					c;
 	} clr;
 	char						map[MAP_MAX_SIZE];
+	size_t						size;
+	size_t						maxlen;
+	int							chrn[128];
 	char						*lines[MAP_MAX_SIZE / 512];
 	int							ln;
+	int							hend;
 };
 
+char							*substr(char *s, t_u32 start, t_u64 len);
+int								validatemap(t_cubcfg *cfg);
+int								padmap(t_cubcfg *cfg);
+void							removeheader(t_cubcfg *cfg);
+size_t							headersize(t_cubcfg *cfg);
 int								emptyline(char *l);
 int								param2flag(char *l);
 char							*gnl(int fd);

@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsefile.c                                        :+:      :+:    :+:   */
+/*   substr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 04:38:48 by ottomata          #+#    #+#             */
-/*   Updated: 2025/05/02 15:14:10 by tblochet         ###   ########.fr       */
+/*   Created: 2025/05/02 16:03:46 by tblochet          #+#    #+#             */
+/*   Updated: 2025/05/02 16:16:14 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int	parsefile(int fd, t_cubcfg *cfg)
+char	*substr(char *s, t_u32 start, t_u64 len)
 {
-	char	*l;
-	int		ln;
-	size_t	llen;
+	size_t	i;
+	size_t	ssz;
+	size_t	newsz;
+	char	*subs;
 
-	if (!cfg || fd < 0)
+	if (!s)
 		return (0);
-	ln = 0;
-	while (1)
-	{
-		l = gnl(fd);
-		if (!l)
-			break ;
-		strcat(cfg->map, l);
-		cfg->lines[ln++] = l;
-		llen = strlen(l);
-		if (llen > cfg->maxlen)
-			cfg->maxlen = llen;
-	}
-	cfg->ln = ln;
-	return (1);
+	ssz = strlen(s);
+	if (start > ssz)
+		return (strdup(""));
+	newsz = ssz - start;
+	if (newsz > len)
+		newsz = len;
+	subs = malloc((newsz + 1) * sizeof(char));
+	if (!subs)
+		return (0);
+	memset(subs, 0, newsz + 1);
+	i = 0;
+	while (i < newsz)
+		subs[i++] = s[start++];
+	return (subs);
 }
