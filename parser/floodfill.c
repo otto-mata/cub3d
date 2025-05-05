@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   floodfill.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 04:58:07 by ottomata          #+#    #+#             */
-/*   Updated: 2025/05/05 15:09:31 by tblochet         ###   ########.fr       */
+/*   Created: 2025/05/05 13:24:54 by tblochet          #+#    #+#             */
+/*   Updated: 2025/05/05 14:03:44 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int	main(void)
+int	floodfill(t_cubcfg *cfg, int x, int y)
 {
-	int			cubfd;
-	t_cubcfg	*cfg;
-
-	cubfd = open("./sample.cub", O_RDONLY);
-	cfg = newcfg();
-	printf("?parsefile: %d\n", parsefile(cubfd, cfg));
-	close(cubfd);
-	printf("?parampresence: %d\n", parampresence(cfg));
-	printf("?paramvalues: %d\n", paramvalues(cfg));
-	removeheader(cfg);
-	printf("?validatemap: %d\n", validatemap(cfg));
-	t_int2 p = findplayer(cfg);
-	printf("%d\n", floodfill(cfg, p.x, p.y));
-	free(cfg);
+	if (cfg->lines[y][x] == '\0' || isspace(cfg->lines[y][x]))
+		return (0);
+	if (cfg->lines[y][x] == '1')
+		return (1);
+	return (floodfill(cfg, x, y + 1) && floodfill(cfg, x + 1, y)
+		&& floodfill(cfg, x, y - 1) && floodfill(cfg, x - 1, y));
 }

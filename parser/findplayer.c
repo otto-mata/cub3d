@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   findplayer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 04:58:07 by ottomata          #+#    #+#             */
-/*   Updated: 2025/05/05 15:09:31 by tblochet         ###   ########.fr       */
+/*   Created: 2025/05/05 14:04:18 by tblochet          #+#    #+#             */
+/*   Updated: 2025/05/05 15:09:49 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int	main(void)
+t_int2	findplayer(t_cubcfg *cfg)
 {
-	int			cubfd;
-	t_cubcfg	*cfg;
+	size_t	i;
+	size_t	j;
+	char	c;
 
-	cubfd = open("./sample.cub", O_RDONLY);
-	cfg = newcfg();
-	printf("?parsefile: %d\n", parsefile(cubfd, cfg));
-	close(cubfd);
-	printf("?parampresence: %d\n", parampresence(cfg));
-	printf("?paramvalues: %d\n", paramvalues(cfg));
-	removeheader(cfg);
-	printf("?validatemap: %d\n", validatemap(cfg));
-	t_int2 p = findplayer(cfg);
-	printf("%d\n", floodfill(cfg, p.x, p.y));
-	free(cfg);
+	i = 0;
+	while (i < cfg->ln)
+	{
+		j = 0;
+		while (cfg->lines[i][j])
+		{
+			c = cfg->lines[i][j];
+			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+				return ((t_int2){.x = j, .y = i});
+			j++;
+		}
+		i++;
+	}
+	return ((t_int2){.x = -1, .y = -1});
 }
