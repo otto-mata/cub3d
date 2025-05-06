@@ -6,25 +6,25 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 05:46:00 by ottomata          #+#    #+#             */
-/*   Updated: 2025/05/02 15:07:14 by tblochet         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:10:11 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
 #include "../includes/types.h"
+#include "parser.h"
 
-static t_u8 a2clr(char *s, char **err)
+static t_u8	a2clr(char *s, char **err)
 {
 	t_u32	res;
 	t_i8	g;
-	
+
 	g = 0;
 	res = 0;
-	while(isspace(*s))
+	while (isspace(*s))
 		s++;
 	if (!isdigit(*s))
 		return (*err = "invalid value, only spaces and digits allowed.", 0);
-	while(*s && isdigit(*s) && !g)
+	while (*s && isdigit(*s) && !g)
 	{
 		res *= 10;
 		g = __builtin_add_overflow(res, *s - '0', &res);
@@ -34,14 +34,13 @@ static t_u8 a2clr(char *s, char **err)
 		return (*err = "color must be in range [0, 255]", 0);
 	*err = 0;
 	return ((t_u8)res);
-	
 }
 
 static t_rgb	a2rgb(char *s)
 {
 	t_rgb	rgb;
 	t_u8	c;
-	char 	*es;
+	char	*es;
 
 	es = 0;
 	c = a2clr(s, &es);

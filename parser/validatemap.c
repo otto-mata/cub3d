@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 14:38:07 by tblochet          #+#    #+#             */
-/*   Updated: 2025/05/06 20:05:17 by tblochet         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:09:35 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,8 @@ int	validatemap(t_cubcfg *cfg)
 	i = 33;
 	while (i < 128)
 	{
-		if (!strchr("10NSEW", i))
-			if (cfg->chrn[i])
-				return (0);
+		if (cfg->chrn[i] && !strchr("10NSEW", i))
+			return (0);
 		i++;
 	}
 	return (1);

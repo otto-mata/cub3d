@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 14:08:02 by tblochet          #+#    #+#             */
-/*   Updated: 2025/05/02 15:07:27 by tblochet         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:10:24 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	headersize(t_cubcfg *cfg)
 {
-	size_t sz;
-	int i;
+	size_t	sz;
+	int		i;
 
 	i = 0;
 	sz = 0;

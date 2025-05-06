@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 04:32:01 by ottomata          #+#    #+#             */
-/*   Updated: 2025/05/06 19:38:29 by tblochet         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:10:36 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ struct							s_cub_file_cfg
 		void					*we;
 		void					*ea;
 	} tex;
-
 	struct						s_colors
 	{
 		t_rgb					f;
