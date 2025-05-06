@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 04:32:01 by ottomata          #+#    #+#             */
-/*   Updated: 2025/05/05 15:22:47 by tblochet         ###   ########.fr       */
+/*   Updated: 2025/05/06 19:38:29 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,11 @@ struct							s_cub_file_cfg
 	char						*lines[MAP_MAX_SIZE / 512];
 	int							ln;
 	int							hend;
+	t_int2						ppos;
+	char						bearing;
 };
 
+int								mapenclosure(t_cubcfg *cfg);
 t_int2							findplayer(t_cubcfg *cfg);
 char							*substr(char *s, t_u32 start, t_u64 len);
 int								validatemap(t_cubcfg *cfg);
@@ -91,5 +94,5 @@ t_cubcfg						*newcfg(void);
 int								parsefile(int fd, t_cubcfg *dest);
 int								parampresence(t_cubcfg *cfg);
 int								paramvalues(t_cubcfg *cfg);
-int								floodfill(t_cubcfg *cfg, int x, int y);
+void							floodfill(t_cubcfg *cfg, int x, int y);
 #endif

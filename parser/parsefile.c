@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 04:38:48 by ottomata          #+#    #+#             */
-/*   Updated: 2025/05/02 15:14:10 by tblochet         ###   ########.fr       */
+/*   Updated: 2025/05/06 19:17:20 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	parsefile(int fd, t_cubcfg *cfg)
 		if (!l)
 			break ;
 		strcat(cfg->map, l);
+		l[strcspn(l, "\n")] = 0;
 		cfg->lines[ln++] = l;
 		llen = strlen(l);
 		if (llen > cfg->maxlen)

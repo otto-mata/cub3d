@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 04:58:07 by ottomata          #+#    #+#             */
-/*   Updated: 2025/05/05 15:09:31 by tblochet         ###   ########.fr       */
+/*   Updated: 2025/05/06 19:46:03 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@ int	main(void)
 	printf("?paramvalues: %d\n", paramvalues(cfg));
 	removeheader(cfg);
 	printf("?validatemap: %d\n", validatemap(cfg));
-	t_int2 p = findplayer(cfg);
-	printf("%d\n", floodfill(cfg, p.x, p.y));
+	cfg->ppos = findplayer(cfg);
+	cfg->bearing = cfg->lines[cfg->ppos.y][cfg->ppos.x];
+	printf("closed? %d\n", mapenclosure(cfg));
+	for (int i = 0; i < cfg->ln; i++)
+	{
+		printf("%s\n",cfg->lines[i]);
+	}
+	
 	free(cfg);
 }
