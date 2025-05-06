@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 14:38:07 by tblochet          #+#    #+#             */
-/*   Updated: 2025/05/02 15:05:15 by tblochet         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:05:17 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	countchars(t_cubcfg *cfg)
 	i = 0;
 	while (i < cfg->size)
 	{
-		cfg->chrn[cfg->map[i]]++;
+		cfg->chrn[(int)cfg->map[i]]++;
 		i++;
 	}
 }

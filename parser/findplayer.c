@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 14:04:18 by tblochet          #+#    #+#             */
-/*   Updated: 2025/05/05 15:09:49 by tblochet         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:04:31 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_int2	findplayer(t_cubcfg *cfg)
 {
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 	char	c;
 
 	i = 0;

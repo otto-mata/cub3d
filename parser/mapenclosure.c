@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:36:45 by tblochet          #+#    #+#             */
-/*   Updated: 2025/05/06 19:56:31 by tblochet         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:05:04 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	checksurroundings(t_cubcfg *cfg, int x, int y)
 {
 	if (y == 0 || y >= cfg->ln - 1)
 		return (0);
-	if (x == 0 || x >= strlen(cfg->lines[y]) - 1)
+	if (x == 0 || x >= (int)strlen(cfg->lines[y]) - 1)
 		return (0);
 	if (cfg->lines[y][x - 1] != '1' && cfg->lines[y][x - 1] != '*')
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 13:24:54 by tblochet          #+#    #+#             */
-/*   Updated: 2025/05/06 19:23:14 by tblochet         ###   ########.fr       */
+/*   Updated: 2025/05/06 20:04:56 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	floodfill(t_cubcfg *cfg, int x, int y)
 {
-	int	r;
-
-	if (y >= 1 && y < cfg->ln - 1 && x >= 1 && x < strlen(cfg->lines[y]) - 1)
+	if (y >= 1 && y < cfg->ln - 1 && x >= 1 && x < (int)strlen(cfg->lines[y])
+		- 1)
 	{
 		if (cfg->lines[y][x] == 'N')
 			cfg->lines[y][x] = '0';
