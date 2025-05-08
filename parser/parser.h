@@ -6,13 +6,14 @@
 /*   By: ottomata <ottomata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 04:32:01 by ottomata          #+#    #+#             */
-/*   Updated: 2025/05/08 02:04:02 by ottomata         ###   ########.fr       */
+/*   Updated: 2025/05/08 02:59:18 by ottomata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 # include "../includes/types.h"
+# include "../includes/mlx.h"
 # include <ctype.h>
 # include <fcntl.h>
 # include <float.h>
