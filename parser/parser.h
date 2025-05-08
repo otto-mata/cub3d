@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ottomata <ottomata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 04:32:01 by ottomata          #+#    #+#             */
-/*   Updated: 2025/05/06 20:10:36 by tblochet         ###   ########.fr       */
+/*   Updated: 2025/05/08 02:04:02 by ottomata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ struct							s_cub_file_cfg
 	int							chrn[128];
 	char						*lines[MAP_MAX_SIZE / 512];
 	int							ln;
-	int							hend;
+	int							mapstart;
 	t_int2						ppos;
 	char						bearing;
 };
@@ -94,4 +94,5 @@ int								parsefile(int fd, t_cubcfg *dest);
 int								parampresence(t_cubcfg *cfg);
 int								paramvalues(t_cubcfg *cfg);
 void							floodfill(t_cubcfg *cfg, int x, int y);
+t_cubcfg						*loadmap(const char *path);
 #endif

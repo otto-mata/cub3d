@@ -16,7 +16,8 @@ SRC=emptyline.c \
 	parsefile.c \
 	removeheader.c \
 	substr.c \
-	validatemap.c
+	validatemap.c \
+	loadmap.c
 
 OBJDIR=./build
 OBJ=$(addprefix $(OBJDIR)/,$(SRC:.c=.o))

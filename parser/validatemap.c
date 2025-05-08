@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validatemap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ottomata <ottomata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 14:38:07 by tblochet          #+#    #+#             */
-/*   Updated: 2025/05/06 20:09:35 by tblochet         ###   ########.fr       */
+/*   Updated: 2025/05/08 02:13:14 by ottomata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,16 @@
 static void	countchars(t_cubcfg *cfg)
 {
 	size_t	i;
-
+	size_t	j;
 	i = 0;
-	while (i < cfg->size)
+	while (i < (size_t)cfg->ln)
 	{
-		cfg->chrn[(int)cfg->map[i]]++;
+		j = 0;
+		while (cfg->lines[i][j])
+		{
+			cfg->chrn[(int)cfg->lines[i][j]]++;
+			j++;
+		}
 		i++;
 	}
 }
